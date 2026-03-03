@@ -1,12 +1,14 @@
 package edu.ucne.dragonball.data.repository
 
-import edu.ucne.dragonball.data.remote.DragonBallApi
 import edu.ucne.dragonball.data.remote.Resource
-import edu.ucne.dragonball.domain.repository.planetRepository
+import edu.ucne.dragonball.data.remote.DragonBallApi
+import edu.ucne.dragonball.data.remote.dto.planetDto
+import edu.ucne.dragonball.data.remote.dto.PlanetResponseDto
 import edu.ucne.dragonball.domain.model.planet
+import edu.ucne.dragonball.domain.repository.planetRepository
 import javax.inject.Inject
 
-class PlanetRepositoryImpl @Inject constructor(
+class planetRepositoryImpl @Inject constructor(
     private val api: DragonBallApi
 ) : planetRepository {
 
@@ -15,26 +17,27 @@ class PlanetRepositoryImpl @Inject constructor(
         limit: Int,
         name: String?
     ): Resource<List<planet>> {
-        return try {
-            if (!name.isNullOrBlank()) {
-                val response = api.getPlanetsByName(name)
-                if (response.isSuccessful && response.body() != null) {
-                    val data = response.body()!!.map { it.toDomain() }
-                    Resource.Success(data)
-                } else {
-                    Resource.Error("Error servidor: Código ${response.code()}")
-                }
+        try {
+            val response = if (!name.isNullOrBlank()) {
+                api.getPlanetsByName(name)
             } else {
-                val response = api.getPlanets(page, limit)
-                if (response.isSuccessful && response.body() != null) {
-                    val data = response.body()!!.items.map { it.toDomain() }
-                    Resource.Success(data)
+                api.getPlanets(page, limit)
+            }
+
+            if (response.isSuccessful && response.body() != null) {
+                val body = response.body()
+                val planetsList: List<planetDto>? = if (!name.isNullOrBlank()) {
+                    body as? List<planetDto>
                 } else {
-                    Resource.Error("Error servidor: Código ${response.code()}")
+                    (body as? PlanetResponseDto)?.items
                 }
+
+                return Resource.Success(planetsList?.map { it.toDomain() } ?: emptyList())
+            } else {
+                return Resource.Error("Error: ${response.code()}")
             }
         } catch (e: Exception) {
-            Resource.Error("Error conexión: ${e.localizedMessage}")
+            return Resource.Error(e.message ?: "Error desconocido")
         }
     }
 
@@ -44,10 +47,10 @@ class PlanetRepositoryImpl @Inject constructor(
             if (response.isSuccessful && response.body() != null) {
                 Resource.Success(response.body()!!.toDomain())
             } else {
-                Resource.Error("Error servidor: Código ${response.code()}")
+                Resource.Error("No encontrado")
             }
         } catch (e: Exception) {
-            Resource.Error("Error conexión: ${e.message}")
+            Resource.Error(e.message ?: "Error desconocido")
         }
     }
 }

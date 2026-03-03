@@ -3,7 +3,6 @@ package edu.ucne.dragonball.domain.repository
 import edu.ucne.dragonball.data.remote.Resource
 import edu.ucne.dragonball.domain.model.planet
 
-
 interface planetRepository {
     suspend fun getPlanets(
         page: Int,

@@ -14,7 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import edu.ucne.dragonball.domain.model.planet
-import androidx.compose.material3.Button
+// Se eliminó la importación de Button ya que no se usa
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
@@ -115,23 +115,19 @@ fun FilterSection(
             .padding(16.dp)
             .fillMaxWidth(),
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+        Column( // Esto hace que la busqueda sea inmediata mientras uno va escribiendo
+            modifier = Modifier.padding(16.dp)
         ) {
             OutlinedTextField(
                 value = name,
-                onValueChange = { onEvent(ListPlanetEvent.UpdateFilterName(it)) },
+                onValueChange = {
+                    onEvent(ListPlanetEvent.UpdateFilterName(it))
+                    onEvent(ListPlanetEvent.Search)
+                },
                 label = { Text("Nombre del Planeta") },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true
             )
-
-            Button(
-                onClick = { onEvent(ListPlanetEvent.Search) },
-                modifier = Modifier.align(Alignment.End)
-            ) {
-                Text("Buscar")
-            }
         }
     }
 }

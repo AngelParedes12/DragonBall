@@ -1,5 +1,11 @@
 [versions]
-agp = "8.13.2"
+agp = "9.0.1"
+converterMoshiVersion = "2.9.0"
+datastorePreferences = "1.1.1"
+genaiPrompt = "1.0.0-alpha1"
+hiltAndroid = "2.57.1"
+hiltAndroidCompiler = "2.57.1"
+hiltNavigationCompose = "1.2.0"
 kotlin = "2.2.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -8,10 +14,22 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
 composeBom = "2024.09.03"
+loggingInterceptor = "4.12.0"
+loggingInterceptorVersion = "4.11.0"
+mapsCompose = "4.3.3"
+material3Version = "1.5.0-alpha08"
+moshi = "1.15.0"
+moshiKotlin = "1.14.0"
+moshiKotlinVersion = "1.15.1"
 navigationCompose = "2.9.3"
 kotlinSerializationJson = "1.6.3"
 ksp = "2.3.2"
 material3 = "1.4.0"
+navigationComposeVersion = "2.8.0-rc01"
+playServicesLocation = "21.3.0"
+playServicesMaps = "18.2.0"
+playServicesTasks = "18.0.2"
+retrofitVersion = "2.9.0"
 room = "2.6.1"
 benchmarkTraceprocessor = "1.4.1"
 cameraCore = "1.5.1"
@@ -20,10 +38,20 @@ firebaseComponents = "19.0.0"
 datastoreCore = "1.2.0"
 foundation = "1.9.5"
 generativeai = "0.9.0"
+workRuntimeKtx = "2.9.1"
 
 [libraries]
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-compose-material3-v150alpha08 = { module = "androidx.compose.material3:material3", version.ref = "material3Version" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+androidx-navigation-compose-v280rc01 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
+genai-prompt = { module = "com.google.mlkit:genai-prompt", version.ref = "genaiPrompt" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -38,6 +66,8 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerializationJson" }
+logging-interceptor-v4120 = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
@@ -49,6 +79,15 @@ firebase-components = { group = "com.google.firebase", name = "firebase-componen
 androidx-datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "datastoreCore" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "generativeai" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+moshi-kotlin-v1140 = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
+okhttp3-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptorVersion" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
+play-services-tasks = { module = "com.google.android.gms:play-services-tasks", version.ref = "playServicesTasks" }
+retrofit2-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshiVersion" }
+retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+squareup-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlinVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
